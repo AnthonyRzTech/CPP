@@ -6,6 +6,7 @@
 BitcoinExchange::BitcoinExchange(const std::string &dbPath) {
   loadPrices(dbPath);
 }
+BitcoinExchange::~BitcoinExchange() {}
 
 void BitcoinExchange::loadPrices(const std::string &dbPath) {
   // Use c_str() to convert std::string to const char*

@@ -6,7 +6,19 @@
 
 class BitcoinExchange {
 public:
-  BitcoinExchange(const std::string &dbPath);
+  // Constructeur
+  explicit BitcoinExchange(const std::string &dbPath);
+
+  // Destructeur
+  ~BitcoinExchange();
+
+  // Constructeur de copie
+  BitcoinExchange(const BitcoinExchange &other);
+
+  // Opérateur d'affectation de copie
+  BitcoinExchange &operator=(const BitcoinExchange &other);
+
+  // Méthode pour obtenir le prix à une date donnée
   float getPriceOnDate(const std::string &date, float value) const;
 
 private:
