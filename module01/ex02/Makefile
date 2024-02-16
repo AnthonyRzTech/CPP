@@ -1,0 +1,19 @@
+NAME = HI_THIS_IS_BRAIN
+SRC = main.cpp
+OBJ = $(SRC:.cpp=.o)
+CXX = g++
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98
+
+all: $(NAME)
+
+$(NAME): $(OBJ)
+	$(CXX) $(CXXFLAGS) -o $@ $^
+
+clean:
+	rm -f $(OBJ)
+
+fclean: clean
+	rm -f $(NAME)
+
+re: fclean all
+
