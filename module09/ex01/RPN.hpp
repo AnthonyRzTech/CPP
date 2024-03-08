@@ -1,32 +1,25 @@
-#ifndef RPN_HPP
-#define RPN_HPP
-
+#include <iostream>
+#include <stack>
+#include <sstream>
 #include <string>
+#include <stdexcept>
 
-class RPN {
-public:
-  // Constructeur par défaut
-  RPN() {}
+class RPN
+{
+	private:
 
-  // Destructeur
-  virtual ~RPN() {}
+		std::string _expression;
+		std::stack<int> _numbers;
 
-  // Constructeur de copie
-  RPN(const RPN &other) {}
+	public:
 
-  // Opérateur d'affectation de copie
-  RPN &operator=(const RPN &other) {
-    // Dans un cas réel, vous devriez copier les attributs de 'other' dans
-    // 'this'
-    return *this;
-  }
+		RPN(void);
+		RPN(std::string &expression);
+		RPN(const RPN &copy);
+		RPN &operator=(const RPN &copy);
+		~RPN(void);
 
-  // Méthode pour évaluer une expression en notation polonaise inversée
-  int evaluateExpression(const std::string &expression);
+		void evaluate();
+		bool isOperator(std::string &token) const;
 
-private:
-  bool isOperator(const char &c) const;
-  int performOperation(const int &a, const int &b, const char &op) const;
 };
-
-#endif // RPN_HPP

@@ -1,29 +1,25 @@
-#ifndef BITCOINEXCHANGE_HPP
-#define BITCOINEXCHANGE_HPP
+#pragma once
 
-#include <map>
+#include <iostream>
+#include <fstream>
 #include <string>
+#include <map>
+#include <sstream>
+#include <iomanip>
 
-class BitcoinExchange {
-public:
-  // Constructeur
-  explicit BitcoinExchange(const std::string &dbPath);
+class BitcoinExchange
+{
+	private:
 
-  // Destructeur
-  ~BitcoinExchange();
+		std::map<std::string, float> _bitcoinPrices;
 
-  // Constructeur de copie
-  BitcoinExchange(const BitcoinExchange &other);
+	public:
 
-  // Opérateur d'affectation de copie
-  BitcoinExchange &operator=(const BitcoinExchange &other);
+		BitcoinExchange(void);
+		BitcoinExchange(const BitcoinExchange &copy);
+		BitcoinExchange &operator=(const BitcoinExchange &copy);
+		~BitcoinExchange(void);
 
-  // Méthode pour obtenir le prix à une date donnée
-  float getPriceOnDate(const std::string &date, float value) const;
-
-private:
-  std::map<std::string, float> prices;
-  void loadPrices(const std::string &dbPath);
+		int opencsv(std::string filename);
+		int readinputfile(char *filename);
 };
-
-#endif // BITCOINEXCHANGE_HPP
