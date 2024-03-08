@@ -1,4 +1,4 @@
-NAME = converter
+NAME = easy
 SRC = main.cpp 
 OBJ = $(SRC:.cpp=.o)
 CXX = g++
@@ -16,4 +16,3 @@ fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
-

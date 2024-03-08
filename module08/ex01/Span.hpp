@@ -1,26 +1,27 @@
+#pragma once
+
 #include <iostream>
-#include <list>
+#include <vector>
+#include <iterator>
+#include <stdexcept>
+#include <algorithm>
+#include <limits>
 
-class Span {
-private:
-  std::list<int> _list;
-  unsigned int _n;
+class Span
+{
+	private:
+		std::vector<int> _numbers;
+		unsigned int _size;
 
-  Span(void);
+	public:
+		Span(void);
+		Span(unsigned int n);
+		Span(Span const &copy);
+		Span &operator=(Span const &copy);
+		~Span(void);
 
-public:
-  Span(unsigned int);
-  Span(const Span &);
-  ~Span(void);
-
-  Span &operator=(const Span &);
-  void addNumber(int);
-  void addNumber(std::list<int>::const_iterator,
-                 std::list<int>::const_iterator);
-  unsigned int longestSpan(void) const;
-  unsigned int shortestSpan(void) const;
-
-  const std::list<int> *getList(void) const;
+		void addNumber(int n);
+		void addNumbers(std::vector<int>::const_iterator begin, std::vector<int>::const_iterator end);
+		int shortestSpan(void) const;
+		int longestSpan(void) const;
 };
-
-std::ostream &operator<<(std::ostream &, const Span &);
