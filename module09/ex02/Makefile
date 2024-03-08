@@ -1,19 +1,23 @@
-NAME = PMerger
-SRC = main.cpp PmergeMe.cpp
-OBJ = $(SRC:.cpp=.o)
-CXX = g++
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98
+CC = g++
+CFLAGS = -Wall -Wextra -Werror --std=c++98 -fsanitize=address
+TARGET = PmergeMe
+SRCS = main.cpp PmergeMe.cpp
+OBJS = $(SRCS:.cpp=.o) 
 
-all: $(NAME)
+all: $(TARGET)
 
-$(NAME): $(OBJ)
-	$(CXX) $(CXXFLAGS) -o $@ $^
+$(TARGET): $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) -o $(TARGET)
+
+%.o: %.cpp
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJ)
+	rm -f $(OBJS)
 
 fclean: clean
-	rm -f $(NAME)
+	rm -f $(TARGET)
 
 re: fclean all
 
+.PHONY: all clean fclean re
